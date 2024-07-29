@@ -1,0 +1,35 @@
+spring:
+  application:
+  name: bussines-clients-v1
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;database=coderpad;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: crywolfTorvik@1
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: "org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl"
+        physical-strategy: "org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.SQLServerDialect
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      bs-clients-v1:
+        slidingWindowSize: 5
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: PT15S
+        failureRateThreshold: 100
+        eventConsumerBufferSize: 10
+server:
+  port: 8090
