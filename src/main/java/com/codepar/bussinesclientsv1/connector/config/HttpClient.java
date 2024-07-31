@@ -22,7 +22,7 @@ public class HttpClient {
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8091")
+                .baseUrl("http://c-bussines-account-v1:8091")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .client(httpClient.build())
