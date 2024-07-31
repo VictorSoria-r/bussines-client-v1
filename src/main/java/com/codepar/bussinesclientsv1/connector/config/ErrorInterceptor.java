@@ -1,6 +1,7 @@
-package com.codepar.bussinesclientsv1.connector;
+package com.codepar.bussinesclientsv1.connector.config;
 
 import com.codepar.bussinesclientsv1.core.advice.ErrorResponse;
+import com.codepar.bussinesclientsv1.core.exception.ApiClientException;
 import com.codepar.bussinesclientsv1.core.exception.CoderPadException;
 import com.google.gson.Gson;
 import okhttp3.Interceptor;
@@ -24,7 +25,7 @@ public class ErrorInterceptor implements Interceptor {
                 ResponseBody responseBody = response.body();
                 if (responseBody!=null) {
                     ErrorResponse errorResponse = gson.fromJson(responseBody.string(), ErrorResponse.class);
-                    throw new IOException(errorResponse.getMessage());
+                    throw new ApiClientException(errorResponse.getMessage());
                 }
             }
             throw new IOException(response.message());

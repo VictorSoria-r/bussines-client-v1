@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@Builder
 public class AccountState implements Serializable {
     private String clientName;
     private String accountNumber;
