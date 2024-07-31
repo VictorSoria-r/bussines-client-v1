@@ -1,5 +1,7 @@
-package com.codepar.bussinesclientsv1.connector;
+package com.codepar.bussinesclientsv1.connector.config;
 
+import com.codepar.bussinesclientsv1.connector.config.ErrorInterceptor;
+import com.codepar.bussinesclientsv1.connector.config.LocalDateAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
@@ -16,6 +18,7 @@ public class HttpClient {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(new ErrorInterceptor());
         Gson gson = new GsonBuilder()
+                .setLenient()
                 .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
                 .create();
         Retrofit retrofit = new Retrofit.Builder()

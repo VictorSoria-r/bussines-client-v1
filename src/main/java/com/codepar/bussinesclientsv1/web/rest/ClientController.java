@@ -57,7 +57,7 @@ public class ClientController {
     }
 
 
-    @GetMapping("account/state")
+    @GetMapping(value = "account/state",produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flowable<AccountState> getStateAccount(@RequestParam String identification,
                                                   @RequestParam String startDate,
                                                   @RequestParam String endDate) {

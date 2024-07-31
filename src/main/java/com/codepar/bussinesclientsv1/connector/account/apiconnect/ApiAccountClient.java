@@ -1,19 +1,21 @@
 package com.codepar.bussinesclientsv1.connector.account.apiconnect;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import com.codepar.bussinesclientsv1.connector.account.model.AccountState;
-import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.Query;
 import retrofit2.http.Streaming;
-
-import java.util.List;
 
 @CircuitBreaker(name = "bs-clients-v1")
 public interface ApiAccountClient {
 
+    @Headers({
+            "Accept: application/stream+json"
+    })
     @Streaming
-    @GET("/api/account/state")
-    Flowable<List<AccountState>> getStateAccount(@Query("identification") String identification,
-                                                 @Query("startDate") String startDate,
-                                                 @Query("endDate") String endDate);
+    @GET(value = "/api/account/state")
+    Observable<ResponseBody> getStateAccount(@Query("identificationClient") String identification,
+                                             @Query("startDate") String startDate,
+                                             @Query("endDate") String endDate);
 }

@@ -1,4 +1,4 @@
-package com.codepar.bussinesclientsv1.connector;
+package com.codepar.bussinesclientsv1.connector.config;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

@@ -19,6 +19,7 @@ public class ClientApplicationServiceImpl implements ClientApplicationService {
 
     private final ClientService clientService;
     private final AccountConnectorService accountConnectorService;
+
     @Override
     public Maybe<ClientResponse> getClientById(Long id) {
         return Maybe.fromCallable(() ->
